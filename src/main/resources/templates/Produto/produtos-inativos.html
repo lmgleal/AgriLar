@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>AgriLar - Anunciar</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+
+    <div class="container">
+        <h3>Meus Anúncios</h3>
+        <hr>
+
+        <table class="table table-bordered table-hover">
+
+            <thead>
+                <th scope="col">Produto</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ação</th>
+
+            </thead>
+            <tbody>
+                <tr scope="row" th:each="produtos : ${produtosList}">
+
+                    <td th:text="${produtos.prod}"></td>
+                    <td th:text="${produtos.nome}"></td>
+                    <td th:text="${produtos.telefone}"></td>
+                    <td th:text="${produtos.estados}"></td>
+                    <td th:text="${produtos.cidade}"></td>
+                    <td th:text="${produtos.status}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{editar/{id}(id=${produtos.prodid})}">
+                            <i class="bi bi-pencil-square"></i> Editar</a>
+
+                        <a class="btn btn-danger" th:href="@{remover/{id}(id=${produtos.prodid})}">
+                            <i class="bi bi-x-square"></i> Remover</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
